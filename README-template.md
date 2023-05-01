@@ -26,12 +26,12 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot.jpg)
+![](./Launch_countdown_timer_screenshot.PNG)
 
 ### Links
 
-- Solution URL: [Launch Countdown Timer Solution](https://your-solution-url.com)
-- Live Site URL: [Launch Countdown Timer Site](https://your-live-site-url.com)
+- Solution URL: [Launch Countdown Timer Solution](https://github.com/Pratiksha1699/Launch-Countdown-Timer)
+- Live Site URL: [Launch Countdown Timer Site](https://launch-countdown-timer-pratiksha1699.vercel.app/)
 
 ## My process
 
