@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
+  
+  <title>Frontend Mentor | Launch countdown timer</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; z-index:2; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+	#bg-stars{
+		background-image:url("images/bg-stars.svg");
+		background-repeat:no-repeat;
+		background-color:hsl(235, 16%, 14%);
+		height:100vh;
+		margin:-7px -7px -7px -7px;
+	}
+	#bg-hills{
+		background-image:url("images/pattern-hills.svg");
+		background-repeat:no-repeat;
+		background-size:100% 100%;
+		height:30%;
+		padding-bottom:0px;
+		margin-bottom:0px;
+		position:sticky;
+		top:70%;
+	}
+	#launch{
+		color:white;
+		font-size:25px;
+		font-family:'Manrope';
+		font-weight:800;
+		text-transform:uppercase;
+		letter-spacing:7px;
+		text-align:center;
+		padding-top:10%;
+	}
+	#time-div{
+		margin-left:23%;
+		padding-top:5%;
+	}
+	#times-div{
+		margin-left:23%;
+		padding-top:0%;
+	}
+	#day-div{
+		color:hsl(345, 95%, 68%);
+		background-color:hsl(236, 21%, 26%);
+		border-radius:10px 10px 10px 10px;
+		display:inline-flex;
+		flex-direction:column;
+		overflow:hidden;
+		width:14%;
+		margin:1.5% 1.5% 0.5% 1.5%;
+		text-align:center;
+		font-size:80px;
+		font-family:Manrope;
+		font-weight:800;
+		box-shadow:0px 10px 0px 0px hsl(234, 17%, 12%);
+		position:relative;
+	}
+	.top,.bottom{
+		height:.58em;
+		padding:.1em;
+		padding-left:0.3em;
+	}
+	.top{
+		display:flex;
+		align-items:flex-start;
+	}
+	.top1{
+		animation:flipy 1.5s infinite;
+		background-color:hsl(236, 21%, 25%);
+		
+	}
+	.top2{
+		animation:flipy 1s infinite;
+		background-color:hsl(236, 21%, 25%);
+	}
+	.bottom{
+		display:flex;
+		align-items:flex-end;
+	}
+	.bottom2{
+		animation:flipy2 1.5s infinite;
+		background-color:hsl(236, 21%, 25%);	
+	}
+	#hour-div{
+		color:hsl(345, 95%, 68%);
+		background-color:hsl(236, 21%, 26%);
+		border-radius:10px 10px 10px 10px;
+		display:inline-flex;
+		flex-direction:column;
+		overflow:hidden;
+		width:14%;
+		margin:1.5% 1.5% 0.5% 1.5%;
+		text-align:center;
+		font-size:80px;
+		font-family:Manrope;
+		font-weight:800;
+		box-shadow:0px 10px 0px 0px hsl(234, 17%, 12%);
+		position:relative;
+	}
+	#minute-div{
+		color:hsl(345, 95%, 68%);
+		background-color:hsl(236, 21%, 26%);
+		border-radius:10px 10px 10px 10px;
+		display:inline-flex;
+		flex-direction:column;
+		overflow:hidden;
+		width:14%;
+		margin:1.5% 1.5% 0.5% 1.5%;
+		text-align:center;
+		font-size:80px;
+		font-family:Manrope;
+		font-weight:800;
+		box-shadow:0px 10px 0px 0px hsl(234, 17%, 12%);
+		position:relative;
+	}
+	#second-div{
+		color:hsl(345, 95%, 68%);
+		background-color:hsl(236, 21%, 26%);
+		border-radius:10px 10px 10px 10px;
+		display:inline-flex;
+		flex-direction:column;
+		overflow:hidden;
+		width:14%;
+		margin:1.5% 1.5% 0.5% 1.5%;
+		text-align:center;
+		font-size:80px;
+		font-family:Manrope;
+		font-weight:800;
+		box-shadow:0px 10px 0px 0px hsl(234, 17%, 12%);
+		position:relative;
+	}
+	#days-div{
+		color:hsl(237, 18%, 59%);
+		display:inline-block;
+		width:14%;
+		margin:1.5%;
+		text-align:center;
+		font-size:16px;
+		font-family:Manrope;
+		font-weight:800;
+		text-transform:uppercase;
+		letter-spacing:3px;
+	}
+	#hours-div{
+		color:hsl(237, 18%, 59%);
+		display:inline-block;
+		width:14%;
+		margin:1.5%;
+		text-align:center;
+		font-size:16px;
+		font-family:Manrope;
+		font-weight:800;
+		text-transform:uppercase;
+		letter-spacing:3px;
+	}
+	#minutes-div{
+		color:hsl(237, 18%, 59%);
+		display:inline-block;
+		width:14%;
+		margin:1.5%;
+		text-align:center;
+		font-size:16px;
+		font-family:Manrope;
+		font-weight:800;
+		text-transform:uppercase;
+		letter-spacing:3px;
+	}
+	#seconds-div{
+		color:hsl(237, 18%, 59%);
+		display:inline-block;
+		width:14%;
+		margin:1.5%;
+		text-align:center;
+		font-size:16px;
+		font-family:Manrope;
+		font-weight:800;
+		text-transform:uppercase;
+		letter-spacing:3px;
+	}
+	#facebook-icon,#pinterest-icon,#instagram-icon{
+		width:2px;
+		height:2px;
+		padding:10px;
+	}
+	#facebook-icon:hover,#pinterest-icon:hover,#instagram-icon:hover{
+		filter: invert(54%) sepia(56%) saturate(2682%) hue-rotate(311deg) brightness(102%) contrast(97%);
+		cursor:pointer;
+	}
+	#icons{
+		margin-left:45%;
+		padding-top:10%;
+	}
+	#divider{
+		border-bottom:1px solid hsla(236, 21%, 25%,0);
+		margin-left:4%;
+		width:92%;
+		top:50%;
+		z-index:5;
+		position:absolute;
+		box-shadow:0px 1px 1px 0px hsl(236, 21%, 25%);
+	}
+	.semi-circles{
+		background-color:hsl(234, 17%, 12%);
+		width:1%;
+		height:4%;
+		padding:2px;
+		border-radius:0% 100% 100% 0%;
+		position:absolute;
+		top:47%;	
+	}
+	.semi-circles-end{
+		background-color:hsl(234, 17%, 12%);
+		width:1%;
+		height:4%;
+		padding:2px;
+		border-radius:100% 0% 0% 100%;
+		position:absolute;
+		top:47%;
+		right:0%;
+	}
+	@KeyFrames flipy{
+		100%{
+			transform:rotateX(90deg);
+			transform-origin:bottom;
+			backface-visibility:hidden;
+		}
+	}
+	@KeyFrames flipy2{
+		100%{	
+			transform:rotateX(-10deg);
+			transform-origin:top;
+			backface-visibility:hidden;
+		}
+	}
+	
+	@media only screen and (max-width:375px){
+	#launch{
+		font-size:20px;
+		letter-spacing:7px;
+		padding-top:20%;
+	}
+	#time-div{
+		margin-left:5%;
+		padding-top:5%;
+	}
+	#times-div{
+		margin-left:5%;
+		padding-top:0%;
+	}
+	#day-div{
+		border-radius:10px 10px 10px 10px;
+		display:inline-block;
+		width:20.3%;
+		margin:1.5% 1.5% 0.5% 1.5%;
+		text-align:center;
+		font-size:40px;
+		box-shadow:0px 5px 0px 0px hsl(234, 17%, 12%);
+		padding:1.5% 0%;
+	}
+	#hour-div{
+		display:inline-block;
+		width:20.3%;
+		margin:1.5% 1.5% 0.5% 1.5%;
+		font-size:40px;
+		box-shadow:0px 5px 0px 0px hsl(234, 17%, 12%);
+		padding:1.5% 0%;
+	}
+	#minute-div{
+		display:inline-block;
+		width:20.3%;
+		margin:1.5% 1.5% 0.5% 1.5%;
+		font-size:40px;
+		box-shadow:0px 5px 0px 0px hsl(234, 17%, 12%);
+		padding:1.5% 0%;
+	}
+	#second-div{
+		display:inline-block;
+		width:20.3%;
+		margin:1.5% 1.5% 0.5% 1.5%;
+		font-size:40px;
+		box-shadow:0px 5px 0px 0px hsl(234, 17%, 12%);
+		padding:1.5% 0%;
+	}
+	#days-div,#hours-div,#minutes-div,#seconds-div{
+		width:20.3%;
+		font-size:10px;
+	}
+	#facebook-icon,#pinterest-icon,#instagram-icon{
+		width:2px;
+		height:2px;
+		padding:10px;
+	}
+	#facebook-icon:hover,#pinterest-icon:hover,#instagram-icon:hover{
+		filter: invert(54%) sepia(56%) saturate(2682%) hue-rotate(311deg) brightness(102%) contrast(97%);
+		cursor:pointer;
+	}
+	#icons{
+		margin-left:30%;
+		padding-top:10%;
+	}
+	}
+  </style>
+  <script>
+    var bdate = new Date('Aug 07 2023 18:05:00').getTime();
+	var z = setInterval(function(){
+		var date = new Date().getTime();
+		//var bdate = new Date('2023-08-15');
+		var days = Math.floor((bdate-date)/(3600*1000*24));
+		var hours = ("0" + Math.floor(((bdate-date)%(3600*1000*24))/(3600*1000))).slice(-2);
+		var min = ("0" + Math.floor(((bdate-date)%(3600*1000))/(60*1000))).slice(-2);
+		var sec = ("0" + Math.floor(((bdate-date)%(60*1000))/(1000))).slice(-2);
+		var secdiv = document.getElementById('secondcard');
+		var hourdiv = document.getElementById('hourcard');
+		var daydiv = document.getElementById('daycard');
+		var mindiv = document.getElementById('minutecard');
+		var bottomsec = document.getElementById('secondcards');
+		var bottommin = document.getElementById('minutecards');
+		var bottomhour = document.getElementById('hourcards');
+		var bottomday = document.getElementById('daycards');
+		
+		var prevalsec = document.getElementById('secondcard').innerHTML;
+		var prevalday = document.getElementById('daycard').innerHTML;
+		var prevalmin = document.getElementById('minutecard').innerHTML;
+		var prevalhour = document.getElementById('hourcard').innerHTML;
+		function RemoveClass1(){
+			document.getElementById('daycard').classList.remove('top2');
+			document.getElementById('daycards').classList.remove('bottom2');
+		}
+		function RemoveClass2(){
+			document.getElementById('minutecard').classList.remove('top2');
+			document.getElementById('minutecards').classList.remove('bottom2');
+		}
+		function RemoveClass3(){
+			document.getElementById('hourcard').classList.remove('top2');
+			document.getElementById('hourcards').classList.remove('bottom2');
+		}
+		if(prevalsec!=sec){
+		secdiv.innerHTML=sec;
+		bottomsec.innerHTML=sec;
+			document.getElementById('secondcard').classList.add('top1');
+			document.getElementById('secondcards').classList.add('bottom2');
+		}
+		if(prevalday!=days){
+			document.getElementById('daycard').classList.add('top2');
+			document.getElementById('daycards').classList.add('bottom2');
+			setTimeout(RemoveClass1, 900);
+			daydiv.innerHTML=days;
+		}
+		if(prevalmin!=min){
+			document.getElementById('minutecard').classList.add('top2');
+			document.getElementById('minutecards').classList.add('bottom2');
+			setTimeout(RemoveClass2, 900);
+			mindiv.innerHTML=min;
+		}
+		if(prevalhour!=hours){
+			document.getElementById('hourcard').classList.add('top2');
+			document.getElementById('hourcards').classList.add('bottom2');
+			//console.log("pre:",prevalhour,"hours",hours);
+			
+			setTimeout(RemoveClass3, 900);
+			hourdiv.innerHTML=hours;
+		}
+		
+		secdiv.innerHTML=sec;
+		bottomsec.innerHTML=sec;
+		mindiv.innerHTML=min;
+		bottommin.innerHTML=min;
+		hourdiv.innerHTML=hours;
+		bottomhour.innerHTML=hours;
+		daydiv.innerHTML=days;
+		bottomday.innerHTML=days;
+	},1000
+	
+	);
+  </script>
+</head>
+<body>
+	<div id="bg-stars">
+	
+	<div id="launch">We're launching soon</div>
+
+	<div id="time-div">
+		<div id="day-div" class="flip">
+		<div class="top" id="daycard"></div>
+		<div class="bottom" id="daycards"></div>
+		<div class="semi-circles"></div>
+		<div id="divider"></div>
+		<div id="days-num"></div>
+		<div class="semi-circles-end"></div>
+		</div>
+	
+		<div id="hour-div" class="flip">
+			<div class="top" id="hourcard"></div>
+			<div class="bottom" id="hourcards"></div>
+			<div class="semi-circles"></div>
+			<div id="divider"></div>
+			<div id="hour-num"></div>
+			<div class="semi-circles-end"></div>
+		</div>
+		<div id="minute-div" class="flip">
+			<div class="top" id="minutecard"></div>
+			<div class="bottom" id="minutecards"></div>
+			<div class="semi-circles"></div>
+			<div id="divider"></div>
+			<div id="min-num"></div>
+			<div class="semi-circles-end"></div>
+		</div>
+		<div id="second-div" class="flip">
+			<div class="top" id="secondcard" ></div>
+			<div class="bottom" id="secondcards"></div>
+			<div class="semi-circles"></div>
+			<div id="divider"></div>
+			<div id="second-num"></div>
+			<div class="semi-circles-end"></div>
+		</div>
+
+	</div>
+	<div id="times-div">
+	<div id="days-div">Days</div>
+	<div id="hours-div">Hours</div>
+	<div id="minutes-div">Minutes</div>
+	<div id="seconds-div">Seconds</div>
+	</div>
+
+  <div id="bg-hills">
+  <div id="icons">
+	<span id="facebook-icon"><img src="images/icon-facebook.svg"></span>
+	<span id="pinterest-icon"><img src="images/icon-pinterest.svg"></span>
+	<span id="instagram-icon"><img src="images/icon-instagram.svg"></span>
+	</div>
+	
+	<div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Pratiksha</a>.
+  </div>
+  </div>
+	</div>
+</body>
+</html>
